@@ -1,1 +1,230 @@
+kv = '''
+ScreenManager:
+	LoginScreen:
+	MainScreen:
+	YellowCardEnteryScreen:
+		
+<LoginScreen>
+	name : 'loginpage'
+	
+	MDTextFieldRound:
+		size_hint:0.6,0.05
+		pos_hint:{'center_x':0.47,'center_y':0.8}
+		
+		hint_text:'Email'
+		
+	MDTextFieldRound:
+		size_hint:0.6,0.05
+		pos_hint:{'center_x':0.47,'center_y':0.7}
+		
+		hint_text:'Password'
+		
+	MDRaisedButton:
+		text : 'Login'
+		size_hint:0.3,None
+		pos_hint:{'center_x':0.5,'center_y':0.5}
+		on_press:
+			root.manager.current='mainpage'
+			
+	
+<MainScreen>
+	name : 'mainpage'
+	NavigationLayout:
+		ScreenManager:
+			Screen:
+				name :'Magerscreen'
+				MDRaisedButton:
+					text:'Yellow Card Entery'
+					pos_hint :{'center_x':0.5,'center_y':.5}
+					on_press:
+						root.manager.transition.direction = 'left'
+						root.manager.current = 'enterypage'
+						
+				MDRaisedButton:
+					text:'dialogopen'
+					pos_hint:{'center_x':0.5,'center_y':0.4}
+					on_press:
+						app.dialog_pressed()
+				
+			
+			
+		MDNavigationDrawer:
+			BoxLayout:
+				orientation:'vertical'
+				MDLabel:
+					text:'Hello'
+					halign:'center'
+	
+<Content>
+	orientation:'vertical'
+	MDTextField:
+	MDTextField:
+	
+<YellowCardEnteryScreen>
+	name : 'enterypage'
+	FloatLayout:
+		MDBoxLayout:
+			orientation:'vertical'
+		#	MDToolbar:
+#				title:'Yellow Card'
+#				left_action_items:[["menu", lambda x: print(x)]]     
+			ScrollView:
+				do_scroll_x:False
+				do_scroll_y:True
+				size_hint:1,0.5
+				pos_hint:{'center_x':0.5,'center_y':.5}   
+				
+				MDBoxLayout:
+					cols:1
+					size_hint:1,1.5
+					spacing:20
+					padding:20
+							
+	
+					MDCard:
+						orientation:'vertical'
+						padding:80
+						spacing:20
+						elevation:1
+						
+						MDLabel:
+							text:'Yellow Card Entery'
+							halign:'center'
+							size_hint:1,0.1
+							bold:True
+							font_style:'H5'	
+						   
+						
+						MDTextField:
+							id:complaint_no
+							hint_text:'Complaint No'
+							
+						MDTextField:
+							id :jobcard_no
+							hint_text:'Job Card No'
+						MDTextField:
+							id:timer
+							hint_text:'Running Hours'
+					
+						MDTextField:
+							id:idel_speed
+							hint_text:'Idel Speed'
+						
+						MDTextField:
+							id:max_speed
+							hint_text:'Maximum Speed'    
+						
+						MDTextField:
+							id:water_temp
+							hint_text:'Water Temperature'
+							 
+		
+						MDTextField:
+							id : oil_temp
+							hint_text:'Oil Temperature'
+							
+						MDTextField:
+							id:oil_pressure
+							hint_text:'Oil Pressure'       
+						MDTextField:
+							id:gear_pressure
+							hint_text:'Gear Oil Pressure'
+					
+						MDTextField:
+							id:complant_type
+							hint_text:'Type of Complaint'
+				
+							 
+			MDFloatLayout:
+				size_hint:1,0.2
+				
+				MDRaisedButton:
+					text:'Save'
+					pos_hint:{'center_x':0.6,'center_y':0.7} 
+					  
+						 
+				MDRaisedButton:
+					text:'View'
+					pos_hint:{'center_x':0.4,'center_y':0.7}						
+					on_press:
+						root.view_pressed()
+								
+					
+			
+'''
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivy.uix.screenmanager import Screen,ScreenManager,WipeTransition
+from kivy.uix.boxlayout import BoxLayout
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.datatables import MDDataTable
+from kivy.metrics import dp
 
+
+	
+class LoginScreen(Screen):
+	pass
+	
+class Content(BoxLayout):
+	pass
+	
+class MainScreen(Screen):
+	pass
+	
+	
+class CenterScreen(Screen):
+	pass
+
+class YellowCardEnteryScreen(Screen):
+	def back(self):
+		self.manager.current='mainpage'
+		self.manager.transition.direction = 'right'
+
+	def view_pressed(self):
+		self.datatabel=MDDataTable(
+		size_hint=(0.9,0.4),
+		column_data=[
+		("Complaint No", dp(30)),
+		("Job Card No", dp(30)),
+		("Running Hours",dp(30)),
+		("Idel Speed",dp(30)),
+		("Maximum Speed", dp(30)),
+		("Water Temperature", dp(30)),
+		("Oil Temperature",dp(30)),
+		("Gear oil Pressure",dp(30)),
+		("Type of Complaint", dp(30))
+		],
+		row_data=[
+		(self.ids.complaint_no.text,
+		 self.ids.jobcard_no.text,
+		  self.ids.timer.text,
+		  self.ids.idel_speed.text,
+		  self.ids.max_speed.text,
+		  self.ids.water_temp.text,
+		  self.ids.oil_temp.text,
+		  self.ids.oil_pressure.text,
+		  self.ids.gear_pressure.text)	
+		]
+		)
+		
+		self.datatabel.open()
+
+
+class Main(MDApp):
+	def build(self):
+		return Builder.load_string(kv) 
+		
+	def dialog_pressed(self):
+
+			self.dialog = MDDialog(
+                
+                type='custom',
+                content_cls = Content())
+                
+            
+			self.dialog.open()   
+		
+if __name__ == '__main__':
+			
+	Main().run()
