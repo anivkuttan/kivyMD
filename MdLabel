@@ -1,0 +1,34 @@
+#from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.app import MDApp
+#from kivymd.uix.label import MDLabel,MDIcon
+from kivy.lang import Builder
+
+
+kv = """
+MDBoxLayout:
+	orientation : 'vertical'
+	MDToolbar:
+		title: 'hello'	
+		
+	MDIcon:
+ 	   halign: "center"
+    	icon: "language-python"
+    	
+    MDLabel:
+    	text : 'Hello'
+    	halign: "center"
+   	 theme_text_color: "Custom"
+   	 text_color: 1, 0, 0, 1
+   	 font_size : 130
+		 		
+  """
+
+#class Container(MDBoxLayout):
+#	pass
+
+class MdApp(MDApp):
+	def build(self):
+		 screen = Builder.load_string(kv)
+		 return screen
+		
+MdApp().run()
