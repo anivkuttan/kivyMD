@@ -1,0 +1,26 @@
+from kivymd.app import MDApp
+from kivy.lang import Builder
+
+
+kv = '''
+MDBoxLayout : 
+	orientation : 'vertical'
+	MDToolbar:
+		title : 'My Main App'
+	#	left_action_items: [["dot-vertical", lambda x: print(x)]]
+		right_action_items : [['menu', lambda x:print(x)]]
+	MDLabel :
+		id : label
+		text : 'Hello'
+		halign : 'center'
+	
+'''
+class Main(MDApp):
+	def build(self):
+		return Builder.load_string(kv)
+		
+	def callback(self):
+		self.root.ids.label.text = 'HelloWorld'
+		
+Main().run()
+		
