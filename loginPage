@@ -1,0 +1,102 @@
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen,ScreenManager,CardTransition
+
+kv = '''
+		
+ScreenManager :
+	
+	LoginScreen:
+	MainScreen:
+		
+<LoginScreen>
+	name : 'login'
+	FloatLayout:
+		MDLabel :
+			text : 'WELCOME'
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.9 } 
+			halign : 'center'
+		MDTextField:
+			hint_text : 'Email'
+			size_hint : 0.8,None
+			helper_text : 'Enter Your Email'
+			helper_text_mode : 'on_focus'
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.7}
+			
+		MDTextField:
+			hint_text : 'Password'
+			size_hint : 0.8, None
+			helper_text : 'Enter Your Password'
+			helper_text_mode : 'on_focus'
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.6}
+			
+		MDRaisedButton:
+			text : 'LOGIN'
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.5} 
+			on_press : 
+				root.manager.current = 'main'
+		
+		MDLabel :
+			text : 'Forget Password ?'
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.4} 
+			halign : 'center'
+<MainScreen>
+	name :'main'
+	NavigationLayout:
+		ScreenManager :
+			Screen:
+				BoxLayout :
+					orientation : 'vertical'
+					MDToolbar :
+						title : 'MyApp'
+						left_action_items : [['menu', lambda x : navi.toggle_nav_drawer()]]
+						right_action_items: [['dots-vertical', lambda x: x]]
+						
+						
+					MDBottomNavigation:
+						MDBottomNavigationItem:
+							icon: 'language-python'
+							text : 'python'
+							
+							
+			
+			
+						MDBottomNavigationItem:
+							icon : 'adjust'
+							text : 'adjust'
+						MDBottomNavigationItem:
+							icon : 'settings'
+							text : 'Settings'	
+		
+		MDNavigationDrawer:
+			id : navi
+			BoxLayout :
+				MDLabel :
+					text: 'hello'	
+					halign :'center'
+
+'''
+
+
+class LoginScreen(Screen):
+	pass
+	
+class MainScreen(Screen):
+	pass
+	
+class Main(MDApp):
+	def build(self):
+		self.sm = ScreenManager(transition = CardTransition())
+		self.sm.add_widget(LoginScreen(name ='login'))
+		self.sm.add_widget(MainScreen(name ='main'))
+		kvfile = Builder.load_string(kv)
+		return kvfile
+		
+	def callback(self):
+		pass
+		
+	def callback_2(self):
+		pass
+		
+		
+Main().run()
