@@ -1,0 +1,28 @@
+from kivymd.app import MDApp
+from kivy.lang import Builder
+
+kv = ''' 
+Screen :
+	MDTextFieldRound: 
+		hint_text : 'Email'
+		helper_text : 'Enter Your Email'
+		helper_text_mode : 'on_focus'
+		pos_hint : {'center_y' : 0.5}
+	#	size_hint : 1,0.5
+	#	size : 500,800
+		padding :10
+		required : True
+		max_text_length : 5
+		multiline : False
+		color_mode :'accent'
+	#	mode : 'fill'
+		fill_color : 0,0,0,.6
+'''
+
+class Main(MDApp):
+	def build(self):
+		kv_file = Builder.load_string(kv)
+		return kv_file
+		
+if __name__ == '__main__':
+	Main().run()
