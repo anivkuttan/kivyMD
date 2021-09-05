@@ -1,0 +1,44 @@
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivymd.uix.list import OneLineListItem,TwoLineListItem
+
+kv = '''
+ScrollView :
+	MDList:
+		id : list
+		OneLineListItem:
+			text : 'hello'
+			
+		TwoLineListItem:
+			text : 'hello'
+			secondary_text : 'world'
+			
+		ThreeLineListItem:
+			text : 'aiyaiyoo'
+			secondary_text : 'mokj'
+			tertiary_text : '3 rd text'
+		
+		OneLineAvatarListItem:
+			text : 'Avatar list item'
+			IconLeftWidget:
+				icon : 'language-python'
+			
+		OneLineAvatarListItem:
+			text : 'ahel' 
+			IconRightWidget:
+				icon : 'language-python'
+
+'''
+
+class Main(MDApp):
+	def build(self):
+		file = Builder.load_string(kv)
+		return file
+		
+	#def on_start(self):
+#		for row in range(1,21):	
+#			self.root.ids.list.add_widget(
+#			TwoLineListItem(text = f'Item No : {row}')
+#			
+		
+Main().run()
