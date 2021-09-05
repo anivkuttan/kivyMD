@@ -1,0 +1,37 @@
+from kivymd.app import MDApp
+from kivy.lang import Builder
+
+kv = '''
+MDFloatLayout:
+	Screen :
+		MDSlider:
+			id : slider
+			min : 0
+			max : 50
+			size_hint : 0.7, None
+			pos_hint : {'center_x' : 0.5, 'center_y' :0.5}
+			on_touch_up : app.movement(self.value)
+		
+		MDIconButton:
+			icon : 'volume-plus'
+			pos_hint : {'center_x' : 0.1, 'center_y': 0.5}
+			on_press : app.movement()
+			
+		MDIconButton:
+			icon : 'volume-minus'
+			pos_hint : {'center_x' : 0.9, 'center_y': 0.5}
+			on_press : app.movement()
+			
+
+'''
+class Main(MDApp):
+	def build(self):
+		kvfile = Builder.load_string(kv)
+		return kvfile
+		
+	def movement(self):
+		pass
+		
+if __name__ == '__main__':
+			
+	Main().run()
