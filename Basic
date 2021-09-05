@@ -1,0 +1,12 @@
+from kivy.lang import Builder
+from kivymd.app import MDApp 
+
+kv = '''
+
+'''
+class Main(MDApp):
+	def build(self):
+		kvfile = Builder.load_string(kv)
+		return kvfile
+		
+Main().run()
