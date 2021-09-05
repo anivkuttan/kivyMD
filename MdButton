@@ -1,0 +1,73 @@
+from kivymd.app import MDApp
+from kivymd.uix.button import MDFlatButton,MDRectangleFlatButton
+from kivymd.uix.screen import Screen
+from kivy.lang import Builder
+
+kv = '''
+Screen :
+	MDFloatLayout:
+		MDFlatButton:
+			text : 'Hello'
+			size_hint : 0.3, 0.1
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.8}
+			font_size : 40
+			text_color : 0,1,0,1
+			
+		MDRectangleFlatButton:
+			text : 'Hello World'
+			disabled: True
+			size_hint : 0.4, 0.1
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.7}
+			font_size : 30
+			theme_text_color: "Custom"
+ 		# text_color: app.theme_cls.primary_color
+ 		   text_color : 0,0,1,1
+			
+		MDIconButton:
+      	  icon: "language-python"
+      	  pos_hint: {"center_x": .5, "center_y": .6}
+      	  user_font_size : 70
+      	  theme_text_color: "Custom"
+ 		# text_color: app.theme_cls.primary_color
+ 		   text_color : 1,0,0,1
+
+		MDFloatingActionButton:
+			icon : 'android'
+			pos_hint : {'center_x' : 0.5 , 'center_y' : 0.5}
+			elevation_normal : 13
+			
+		MDRaisedButton :
+			text : 'Ani'	
+			pos_hint : {'center_x' : 0.5, 'center_y' : 0.4}
+			md_bg_color : 0,0,0,1
+			
+		MDRectangleFlatIconButton:
+  		  icon: "android"
+   		 text: "Kuttan"
+   		 size_hint : 0.2,0.06
+   		 pos_hint : {'center_x' : 0.5, 'center_y' : 0.3}
+   		 
+   	 MDRoundFlatButton:
+    		text : 'Anikuttan'
+    		pos_hint : {'center_x' : 0.5, 'center_y' : 0.2}
+    		font_size : 20
+    		
+			
+			
+			
+ 			 '''
+
+class Pong(MDApp):
+	def build(self):
+		kv_file = Builder.load_string(kv)
+		
+	#	screen = Screen()	
+	#	btn = MDFlatButton(text = 'Hello ', 
+	#	pos_hint ={'center_x': 0.5, 'center_y': 0.5})
+	#	btn_1 = MDRectangleFlatButton(text = 'World')
+	#	screen.add_widget(btn)
+	#	screen.add_widget(btn_1)
+	
+		return kv_file
+		
+Pong().run()
