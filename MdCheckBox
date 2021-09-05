@@ -1,0 +1,87 @@
+from kivy.lang import Builder
+from kivymd.app import MDApp
+
+kv = '''
+<Check@MDCheckbox>:
+	group : 'one'
+	size_hint : None, None
+	size : dp(48), dp(48)
+	
+<che@MDCheckbox>:
+	group : 'hello'
+	size_hint : None, None
+	size : dp(48), dp(48)
+	
+	
+Screen :
+	Check:
+		pos_hint : {'x' : 0.3, 'y' : 0.5}
+		
+	Check :
+		pos_hint : {'x' : 0.5 , 'y' : 0.5}
+		
+	CheckBox :
+		size_hint : None,None
+		size : dp(48), dp(48)
+		pos_hint : {'x' : 0.2, 'y' : 0.5}
+		active : True
+		
+	che :
+	    pos_hint : {'x' : 0.5, 'y' : 0.2}	
+	    	 
+	che : 
+	    pos_hint : {'x' : 0.6, 'y' : 0.2}
+	    
+		
+	Check : 
+		pos_hint : {'x' : 0.7, 'y' : 0.5}
+		
+	MDCheckbox :
+		size_hint : None, None
+		size : dp(48), dp(48)
+		pos_hint : {'x' : 0.1, 'y' : 0.8}
+		active : True
+		selected_color : 0,1,0,1
+		
+		
+	MDCheckbox :
+		size_hint : None, None
+		size : dp(48), dp(48)
+		pos_hint : {'x' : 0.3, 'y' : 0.8}
+		selected_color : 1,0,0,1
+		unselected_color : 0,0,1,1
+		on_active : app.check(self.active)
+		
+	MDSwitch:
+		size_hint : None, None
+		size : dp(40), dp(40)
+		pos_hint : {'x' : 0.5, 'y' : 0.8}
+		thumb_color : 1,0,0,1
+		group : 'one'
+		
+	MDSwitch:
+		size_hint : None, None
+		size : dp(40), dp(40)
+		pos_hint : {'x' : 0.6, 'y' : 0.8}
+		thumb_color : 1,0,0,1
+		thumb_color_down : 0,1,0,1
+		active : True
+		
+'''
+
+
+class Test(MDApp):
+    def build(self):
+        self.theme_cls.theme_style = 'Light'
+        return Builder.load_string(kv)
+    def check(self,value):
+         if value :
+         	self.theme_cls.theme_style = 'Dark'
+         else:
+         	self.theme_cls.theme_style = 'Light'
+ 
+         
+         
+     
+
+Test().run()
