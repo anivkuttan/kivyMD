@@ -1,0 +1,64 @@
+from kivy.lang import Builder
+from kivymd.app import MDApp 
+from kivy.uix.screenmanager import Screen,ScreenManager
+
+kv = '''
+ScreenManager:
+	LoginScreen:
+	ApplicationScreen:
+		
+<LoginScreen>:
+	name : 'LOG_IN'
+	MDBoxLayout :
+		orientation : 'vertical'
+		MDLabel :
+			text : 'hello'
+			halign : 'center'
+		MDFlatButton :
+			text :'Next'
+			on_press:
+				root.manager.current = 'APP'
+			
+			
+	
+		
+
+<ApplicationScreen>:
+	name : 'APP'	
+	
+	NavigationLayout:
+		ScreenManager :
+			Screen :
+				name : 'ani'
+				BoxLayout:
+					orientation : 'vertical'
+					MDToolbar:
+						title : 'MyApp'
+					MDLabel :
+						text : 'heklo'
+						halign : 'center'
+				
+		MDNavigationDrawer:
+			id : 'DRAWER'
+			
+
+
+'''
+class LoginScreen(Screen):
+	pass
+	
+class ApplicationScreen(Screen):
+	pass
+	
+
+
+class Main(MDApp):
+	def build(self):
+	#	self.sm= ScreenManager()
+	#	self.sm.add_widget(LoginScreen(name ='LOG_IN'))
+		#self.sm.add_widget(ApplicationScreen(name = 'APP'))
+		
+		kvfile = Builder.load_string(kv)
+		return kvfile
+		
+Main().run()
