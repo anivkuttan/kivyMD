@@ -1,0 +1,44 @@
+from kivy.lang import Builder
+from kivymd.app import MDApp
+
+
+class Test(MDApp):
+
+    def build(self):
+        
+      #  self.theme_cls.primary_palette = "Green"
+        return Builder.load_string(
+            '''
+       
+MDBoxLayout:
+	orientation : 'vertical'
+	
+	MDToolbar:
+		title : 'ToolBar'
+	#	md_bg_color : 1,0,.2,1
+		specific_text_color : 1,1,1,1
+		left_action_items : [['menu', lambda : print(x)]]
+		
+	MDBottomNavigation:
+	
+		text_color_active : 0,0,0,1
+	
+		MDBottomNavigationItem:
+			icon : 'language-python'
+			text : 'python'
+			
+		MDBottomNavigationItem:
+			icon : 'language-javascript'
+			text : 'Js'
+			
+		MDBottomNavigationItem:
+			icon : 'language-cpp'
+			text : 'c++'
+		
+		MDBottomNavigationItem:
+			icon : 'language-java'
+			text : 'java'
+			
+		''')
+
+Test().run()
