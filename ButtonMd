@@ -1,0 +1,18 @@
+from kivymd.app import MDApp
+from kivy.lang import Builder
+
+kv = """
+MDBoxLayout:
+	MDRectangleFlatButton:
+		text : 'hello'
+		pos_hint : {'center_x' : 0.5, 'center_y': 0.5}
+			
+"""
+			
+class Main(MDApp):
+	def build(self):
+		self.theme_cls.theme_style = 'Dark'
+		self.file = Builder.load_string(kv)
+		return self.file
+		
+Main().run()
