@@ -1,0 +1,39 @@
+kv='''
+FloatLayout:
+	MDBoxLayout:
+		pos_hint:{'center_x':0.5,'center_y':0.5}
+		size_hint:1,0.3
+	#	md_bg_color:1,0,0,1
+		ScrollView:
+			do_scroll_x:True
+			do_scroll_y:False
+			bar_inactive_color:1,1,1,1
+			bar_color:1,1,1,1
+			MDBoxLayout:
+				orientation:'horizontal'
+				size_hint:2,1
+				spacing:30
+				padding:50
+				MDCard:
+					elevation:1
+					
+				MDCard:
+				MDCard:
+					
+			
+		
+				
+			
+'''
+
+from kivy.lang import Builder
+from kivymd.app import MDApp
+
+class Main(MDApp):
+	def build(self):
+		self.theme_cls.primary_palette = 'Green'
+		self.theme_cls.theme_style = 'Light'
+		return Builder.load_string(kv)
+		
+Main().run()
+		
