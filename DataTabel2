@@ -1,0 +1,39 @@
+from kivy.lang import Builder
+from kivymd.app import MDApp 
+
+from kivy.metrics import dp
+from kivymd.uix.datatables import MDDataTable
+
+kv = '''
+Screen:
+	MDRectangleFlatButton:
+		text: 'data view'
+		pos_hint : {'center_x':0.5,'center_y':0.5}
+		on_release:
+			app.databtn()
+'''
+class Main(MDApp):
+	def build(self):
+		kvfile = Builder.load_string(kv)
+		return kvfile
+		
+	
+		
+	def databtn(self):
+		self.data_tabel = MDDataTable(
+		size_hint=(0.8,0.6),
+		column_data = [
+		("No",dp(15)),
+		("Name",dp(30)),
+		("Gender",dp(25))
+		],
+		row_data=[
+		("1","AniKuttan","Male"),
+		('2','Josap','male')
+		]
+		)
+									
+		self.data_tabel.open()
+		
+		
+Main().run()
