@@ -1,3 +1,4 @@
+
 kv = '''
 ScreenManager:
 	LoginScreen:
@@ -7,13 +8,13 @@ ScreenManager:
 <LoginScreen>
 	name : 'loginpage'
 	
-	MDTextFieldRound:
+	MDTextField:
 		size_hint:0.6,0.05
 		pos_hint:{'center_x':0.47,'center_y':0.8}
 		
 		hint_text:'Email'
 		
-	MDTextFieldRound:
+	MDTextField:
 		size_hint:0.6,0.05
 		pos_hint:{'center_x':0.47,'center_y':0.7}
 		
@@ -29,7 +30,7 @@ ScreenManager:
 	
 <MainScreen>
 	name : 'mainpage'
-	NavigationLayout:
+	MDNavigationDrawer:
 		ScreenManager:
 			Screen:
 				name :'Magerscreen'
