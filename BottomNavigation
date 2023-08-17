@@ -2,18 +2,13 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 
 
-class Test(MDApp):
 
-    def build(self):
-        
-      #  self.theme_cls.primary_palette = "Green"
-        return Builder.load_string(
-            '''
+kv = '''
        
 MDBoxLayout:
 	orientation : 'vertical'
 	
-	MDToolbar:
+	MDTopAppBar:
 		title : 'ToolBar'
 	#	md_bg_color : 1,0,.2,1
 		specific_text_color : 1,1,1,1
@@ -39,6 +34,10 @@ MDBoxLayout:
 			icon : 'language-java'
 			text : 'java'
 			
-		''')
-
-Test().run()
+		'''
+class Main(MDApp):
+	def build(self):
+		kvfile = Builder.load_string(kv)
+		return kvfile
+		
+Main().run()
